@@ -1,0 +1,89 @@
+{
+  "products": [
+    {
+      "slug": "caffeine-reset",
+      "title": "Caffeine Reset \u2014 Please Speak Slowly",
+      "short": "A dry line for anyone cutting back. An empty cup, thinning steam, and a reset arrow.",
+      "price_tee": 799,
+      "price_mug": 449,
+      "colors": [
+        "white",
+        "paper",
+        "charcoal"
+      ],
+      "id": "caffeine-reset",
+      "design_id": "01-caffeine-reset"
+    },
+    {
+      "slug": "slow-pour",
+      "title": "Slow Pour \u2014 Good Coffee Takes a Minute",
+      "short": "A gooseneck kettle, a generic pour-over dripper, and a glass carafe. Patience in a line drawing.",
+      "price_tee": 799,
+      "price_mug": 449,
+      "colors": [
+        "white",
+        "paper",
+        "charcoal"
+      ],
+      "id": "slow-pour",
+      "design_id": "02-slow-pour"
+    },
+    {
+      "slug": "dallah-qahwa",
+      "title": "\u0627\u0644\u0642\u0647\u0648\u0629 \u062a\u062c\u0645\u0639\u0646\u0627 \u2014 Coffee Brings Us Together",
+      "short": "A traditional dallah and two finjan, with a hospitality line in Arabic.",
+      "price_tee": 799,
+      "price_mug": 449,
+      "colors": [
+        "white",
+        "paper",
+        "charcoal"
+      ],
+      "id": "dallah-qahwa",
+      "design_id": "03-dallah-qahwa"
+    },
+    {
+      "slug": "on-dum",
+      "title": "On Dum \u2014 Don't Open the Lid",
+      "short": "A sealed handi and a patient line. The dum is doing the work. Leave it alone.",
+      "price_tee": 799,
+      "price_mug": 449,
+      "colors": [
+        "white",
+        "paper",
+        "charcoal"
+      ],
+      "id": "on-dum",
+      "design_id": "04-on-dum"
+    },
+    {
+      "slug": "leave-ticket",
+      "title": "Leave Ticket \u2014 The Only Countdown That Matters",
+      "short": "An annual-leave ticket stub for the trip home. Not a boarding pass. No airline marks.",
+      "price_tee": 799,
+      "price_mug": 449,
+      "colors": [
+        "white",
+        "paper"
+      ],
+      "id": "leave-ticket",
+      "design_id": "05-leave-ticket"
+    },
+    {
+      "slug": "one-bag-for-me",
+      "title": "One Bag for Me, The Rest Is Gifts",
+      "short": "The classic packing list, in one line, with a suitcase and a HOME tag.",
+      "price_tee": 799,
+      "price_mug": 449,
+      "colors": [
+        "white",
+        "paper",
+        "charcoal"
+      ],
+      "id": "one-bag-for-me",
+      "design_id": "06-homebound-gifts"
+    }
+  ],
+  "contact": "wdhxb7q992wc@mail.grokbot.com",
+  "currency": "INR"
+}

@@ -1,0 +1,165 @@
+/*
+ * Tailwind v4 entry: config lives here, with no tailwind.config.js or PostCSS plugin.
+ * - Keep every @import in this top block, above @theme and the rest of the file. Install an
+ *   npm package before @importing its CSS. Never @import a remote URL (web fonts, CDN CSS): the
+ *   build resolves @import from the filesystem. Load those with a <link> in the head() of
+ *   src/routes/__root.tsx and name the family in a --font-* token in @theme inline below.
+ */
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition.
+ *
+ * The design lives in this file: oklch color tokens on the shadcn variables
+ * (--background, --foreground, --primary, --secondary, --muted, --accent, ...) plus
+ * new tokens as needed, font tokens, and custom styles and animations.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-warm: "Fraunces", Georgia, serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --font-arabic: "Noto Naskh Arabic", serif;
+  --color-turmeric: var(--turmeric);
+  --color-brick: var(--brick);
+  --color-charcoal: var(--charcoal);
+  --color-paper: var(--paper);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+
+:root {
+  --radius: 0.25rem;
+  --charcoal: oklch(0.267 0.007 67);
+  --turmeric: oklch(0.755 0.145 80);
+  --brick: oklch(0.51 0.15 34);
+  --paper: oklch(0.954 0.017 78);
+  --background: var(--paper);
+  --foreground: var(--charcoal);
+  --card: oklch(0.975 0.012 80);
+  --card-foreground: var(--charcoal);
+  --popover: var(--paper);
+  --popover-foreground: var(--charcoal);
+  --primary: var(--charcoal);
+  --primary-foreground: var(--paper);
+  --secondary: oklch(0.92 0.022 78);
+  --secondary-foreground: var(--charcoal);
+  --muted: oklch(0.92 0.022 78);
+  --muted-foreground: oklch(0.43 0.012 67);
+  --accent: var(--turmeric);
+  --accent-foreground: var(--charcoal);
+  --destructive: var(--brick);
+  --destructive-foreground: var(--paper);
+  --border: oklch(0.267 0.007 67 / 18%);
+  --input: oklch(0.267 0.007 67 / 30%);
+  --ring: var(--turmeric);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; }
+  :focus-visible { outline: 2px solid var(--turmeric); outline-offset: 3px; }
+}
+
+@utility kicker {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+@utility rule-turmeric {
+  height: 3px; width: 3rem; background: var(--turmeric); border-radius: 2px;
+}
+@utility chip {
+  border: 1.5px solid var(--color-border);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  transition: all 150ms;
+  &:hover { border-color: var(--charcoal); }
+  &[aria-pressed="true"] { background: var(--charcoal); color: var(--paper); border-color: var(--charcoal); }
+}
+@utility btn-ink {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--charcoal); color: var(--paper);
+  padding: 0.9rem 1.6rem; border-radius: 999px; font-weight: 500;
+  transition: transform 150ms, box-shadow 150ms;
+  box-shadow: 0 0 0 0 var(--turmeric);
+  &:hover { transform: translateY(-1px); box-shadow: 0 4px 0 0 var(--turmeric); }
+}
+@utility btn-line {
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1.5px solid var(--charcoal); color: var(--charcoal);
+  padding: 0.85rem 1.5rem; border-radius: 999px; font-weight: 500;
+  &:hover { background: var(--turmeric); }
+}
+@utility prose-fd {
+  max-width: 42rem; line-height: 1.7;
+  & h2 { font-size: 1.35rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.5rem; }
+  & p, & li { color: var(--color-muted-foreground); margin-bottom: 0.75rem; }
+  & ul { list-style: disc; padding-left: 1.25rem; }
+  & a { color: var(--charcoal); text-decoration: underline; text-decoration-color: var(--turmeric); text-underline-offset: 3px; text-decoration-thickness: 2px; }
+}
+

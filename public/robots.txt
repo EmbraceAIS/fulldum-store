@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Absolute address, matching SITE_URL in src/config/site.ts
+Sitemap: https://embraceais.github.io/fulldum-store/sitemap.xml
