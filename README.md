@@ -13,7 +13,7 @@ serif, Outfit for UI and body, Noto Naskh Arabic on the dallah page.
 | Path | What's there |
 | --- | --- |
 | `/` | Home: the wordmark, the tagline, the story, the launch line-up |
-| `/shop` | All six prints |
+| `/shop` | Gamer Drop and launch-one prints |
 | `/product/caffeine-reset` | Caffeine Reset tee and mug |
 | `/product/slow-pour` | Slow Pour tee and mug |
 | `/product/dallah-qahwa` | Dallah Qahwa tee and mug |

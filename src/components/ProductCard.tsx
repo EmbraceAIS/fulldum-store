@@ -26,6 +26,7 @@ export function ProductCard({ product }: { product: Product }) {
       </h3>
       <p className="mt-1 text-sm text-muted-foreground">
         Tee {formatINR(PRICES.tee)} · Mug {formatINR(PRICES.mug)} · shipping included
+        {product.collection === "gamer-drop" ? " · Coming soon" : ""}
       </p>
     </Link>
   );

@@ -122,12 +122,24 @@ function ProductDetails({ product }: { product: Product }) {
 
           <div className="mt-8 flex flex-col gap-3">
             {actions.map((action) => (
-              <a key={action.label} href={action.href} target={action.target} rel={action.rel} className="btn-ink w-full">
-                {action.label}
-              </a>
+              action.disabled || !action.href ? (
+                <button key={action.label} type="button" disabled className="btn-ink w-full">
+                  {action.label}
+                </button>
+              ) : (
+                <a key={action.label} href={action.href} target={action.target} rel={action.rel} className="btn-ink w-full">
+                  {action.label}
+                </a>
+              )
             ))}
           </div>
-          <p className="mt-3 text-sm text-muted-foreground">Pick your size on the next page. Printed to order, ships in {shippingWindow}.</p>
+          <p className="mt-3 text-sm text-muted-foreground">
+            {actions.every((action) => action.disabled) ? (
+              "Checkout for this drop opens soon."
+            ) : (
+              <>Pick your size on the next page. Printed to order, ships in {shippingWindow}.</>
+            )}
+          </p>
           <ul className="mt-6 space-y-1 text-sm text-muted-foreground">
             <li>Printed in India, ships in {shippingWindow}.</li>
             <li>No cash on delivery. <Link to="/returns" className="underline decoration-turmeric underline-offset-2">Returns</Link> for damage or misprint only.</li>

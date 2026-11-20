@@ -1,13 +1,14 @@
 import { describe, expect, it } from "vitest";
-import { buyLinks, getBuyLink } from "@/config/buyLinks";
+import { buyLinks, GAMER_DROP_CHECKOUT_LIVE, getBuyLink } from "@/config/buyLinks";
 import { buyAction } from "@/lib/checkout";
 import { getProduct, PRICES } from "@/lib/products";
 import { SHIPPING_DAYS } from "@/lib/shipping";
 
+const LIVE_SLUGS = ["caffeine-reset", "slow-pour", "dallah-qahwa", "on-dum", "leave-ticket", "one-bag-for-me"];
+const GAMER_DROP_SLUGS = ["mummy-called", "biryani-coma", "ammas-plate"];
+
 describe("checkout rules", () => {
-  it.each([
-    "caffeine-reset", "slow-pour", "dallah-qahwa", "on-dum", "leave-ticket", "one-bag-for-me",
-  ])("%s uses the supplied payment pages for every existing colour and size", (slug) => {
+  it.each(LIVE_SLUGS)("%s uses the supplied payment pages for every existing colour and size", (slug) => {
     const entries = Object.entries(buyLinks).filter(([key]) => key.startsWith(`${slug}:`));
     expect(entries).toHaveLength(slug === "leave-ticket" ? 11 : 17);
     for (const [key, url] of entries) {
@@ -17,12 +18,30 @@ describe("checkout rules", () => {
     for (const variant of ["tee", "mug"] as const) {
       const action = buyAction(slug, variant);
       expect(action.href).toBe(`https://rzp.io/rzp/fulldum-${slug}-${variant}`);
+      expect(action.disabled).toBe(false);
       expect(action.target).toBe("_blank");
       expect(action.rel).toBe("noopener noreferrer");
     }
   });
+  it.each(GAMER_DROP_SLUGS)("%s stores payment page URLs but checkout stays off", (slug) => {
+    expect(GAMER_DROP_CHECKOUT_LIVE).toBe(false);
+    const entries = Object.entries(buyLinks).filter(([key]) => key.startsWith(`${slug}:`));
+    expect(entries).toHaveLength(17);
+    for (const [key, url] of entries) {
+      const variant = key.split(":")[1];
+      expect(url).toBe(`https://rzp.io/rzp/fulldum-${slug}-${variant}`);
+    }
+    for (const variant of ["tee", "mug"] as const) {
+      expect(getBuyLink(slug, variant, "white", variant === "tee" ? "M" : "-")).toBe("");
+      const action = buyAction(slug, variant);
+      expect(action.href).toBe("");
+      expect(action.disabled).toBe(true);
+      expect(action.label).toMatch(/Coming soon$/);
+      expect(action.target).toBeUndefined();
+    }
+  });
   it("keeps exactly the existing key set", () => {
-    const expected = ["caffeine-reset", "slow-pour", "dallah-qahwa", "on-dum", "leave-ticket", "one-bag-for-me"].flatMap((slug) => [
+    const expected = [...GAMER_DROP_SLUGS, ...LIVE_SLUGS].flatMap((slug) => [
       ...(slug === "leave-ticket" ? ["white", "paper"] : ["white", "paper", "charcoal"]).flatMap((color) =>
         ["S", "M", "L", "XL", "2XL"].map((size) => `${slug}:tee:${color}:${size}`)),
       ...(slug === "leave-ticket" ? ["white"] : ["white", "charcoal"]).map((color) => `${slug}:mug:${color}:-`),
@@ -43,4 +62,3 @@ describe("checkout rules", () => {
     expect(p?.colors.mug).toEqual(["white"]);
   });
 });
-

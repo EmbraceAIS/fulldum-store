@@ -148,6 +148,12 @@
   transition: transform 150ms, box-shadow 150ms;
   box-shadow: 0 0 0 0 var(--turmeric);
   &:hover { transform: translateY(-1px); box-shadow: 0 4px 0 0 var(--turmeric); }
+  &:disabled, &[aria-disabled="true"] {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
 }
 @utility btn-line {
   display: inline-flex; align-items: center; justify-content: center;

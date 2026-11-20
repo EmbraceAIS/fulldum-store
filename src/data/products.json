@@ -1,8 +1,53 @@
 {
   "products": [
     {
+      "slug": "mummy-called",
+      "title": "Mummy Called — Come Downstairs",
+      "short": "The raid was going well. Then the landline rang, and downstairs won.",
+      "price_tee": 799,
+      "price_mug": 449,
+      "colors": [
+        "white",
+        "paper",
+        "charcoal"
+      ],
+      "id": "mummy-called",
+      "design_id": "07-mummy-called",
+      "collection": "gamer-drop"
+    },
+    {
+      "slug": "biryani-coma",
+      "title": "Biryani Coma — Do Not Disturb",
+      "short": "The plate is empty. The controller can wait. Do not disturb.",
+      "price_tee": 799,
+      "price_mug": 449,
+      "colors": [
+        "white",
+        "paper",
+        "charcoal"
+      ],
+      "id": "biryani-coma",
+      "design_id": "08-biryani-coma",
+      "collection": "gamer-drop"
+    },
+    {
+      "slug": "ammas-plate",
+      "title": "Amma's Plate — 100% Cleared",
+      "short": "You finished it. She noticed. That is the only score that matters.",
+      "price_tee": 799,
+      "price_mug": 449,
+      "colors": [
+        "white",
+        "paper",
+        "charcoal"
+      ],
+      "id": "ammas-plate",
+      "design_id": "09-ammas-plate",
+      "collection": "gamer-drop"
+    },
+    {
       "slug": "caffeine-reset",
-      "title": "Caffeine Reset \u2014 Please Speak Slowly",
+      "title": "Caffeine Reset — Please Speak Slowly",
       "short": "A dry line for anyone cutting back. An empty cup, thinning steam, and a reset arrow.",
       "price_tee": 799,
       "price_mug": 449,
@@ -12,11 +57,12 @@
         "charcoal"
       ],
       "id": "caffeine-reset",
-      "design_id": "01-caffeine-reset"
+      "design_id": "01-caffeine-reset",
+      "collection": "launch-one"
     },
     {
       "slug": "slow-pour",
-      "title": "Slow Pour \u2014 Good Coffee Takes a Minute",
+      "title": "Slow Pour — Good Coffee Takes a Minute",
       "short": "A gooseneck kettle, a generic pour-over dripper, and a glass carafe. Patience in a line drawing.",
       "price_tee": 799,
       "price_mug": 449,
@@ -26,11 +72,12 @@
         "charcoal"
       ],
       "id": "slow-pour",
-      "design_id": "02-slow-pour"
+      "design_id": "02-slow-pour",
+      "collection": "launch-one"
     },
     {
       "slug": "dallah-qahwa",
-      "title": "\u0627\u0644\u0642\u0647\u0648\u0629 \u062a\u062c\u0645\u0639\u0646\u0627 \u2014 Coffee Brings Us Together",
+      "title": "القهوة تجمعنا — Coffee Brings Us Together",
       "short": "A traditional dallah and two finjan, with a hospitality line in Arabic.",
       "price_tee": 799,
       "price_mug": 449,
@@ -40,11 +87,12 @@
         "charcoal"
       ],
       "id": "dallah-qahwa",
-      "design_id": "03-dallah-qahwa"
+      "design_id": "03-dallah-qahwa",
+      "collection": "launch-one"
     },
     {
       "slug": "on-dum",
-      "title": "On Dum \u2014 Don't Open the Lid",
+      "title": "On Dum — Don't Open the Lid",
       "short": "A sealed handi and a patient line. The dum is doing the work. Leave it alone.",
       "price_tee": 799,
       "price_mug": 449,
@@ -54,11 +102,12 @@
         "charcoal"
       ],
       "id": "on-dum",
-      "design_id": "04-on-dum"
+      "design_id": "04-on-dum",
+      "collection": "launch-one"
     },
     {
       "slug": "leave-ticket",
-      "title": "Leave Ticket \u2014 The Only Countdown That Matters",
+      "title": "Leave Ticket — The Only Countdown That Matters",
       "short": "An annual-leave ticket stub for the trip home. Not a boarding pass. No airline marks.",
       "price_tee": 799,
       "price_mug": 449,
@@ -67,7 +116,8 @@
         "paper"
       ],
       "id": "leave-ticket",
-      "design_id": "05-leave-ticket"
+      "design_id": "05-leave-ticket",
+      "collection": "launch-one"
     },
     {
       "slug": "one-bag-for-me",
@@ -81,7 +131,8 @@
         "charcoal"
       ],
       "id": "one-bag-for-me",
-      "design_id": "06-homebound-gifts"
+      "design_id": "06-homebound-gifts",
+      "collection": "launch-one"
     }
   ],
   "contact": "wdhxb7q992wc@mail.grokbot.com",

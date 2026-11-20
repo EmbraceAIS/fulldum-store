@@ -10,10 +10,13 @@ describe("launch photo selection", () => {
     ["on-dum", "mug"],
     ["leave-ticket", "tee"],
     ["one-bag-for-me", "tee"],
+    ["mummy-called", "tee"],
+    ["biryani-coma", "tee"],
+    ["ammas-plate", "tee"],
   ])("%s starts with the %s photo", (slug, variant) => {
     expect(getProduct(slug)?.defaultVariant).toBe(variant);
     expect(mockupSrc(slug, variant)).toBe(`/fulldum-store/mockups/${slug}/${variant}.jpg`);
-    expect(existsSync(`public${mockupSrc(slug, variant)}`)).toBe(true);
+    expect(existsSync(`public/mockups/${slug}/${variant}.jpg`)).toBe(true);
   });
 
   it("type swaps the supplied photo without inventing colourway photos", () => {

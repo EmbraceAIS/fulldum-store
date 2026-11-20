@@ -2,18 +2,28 @@
  * FullDum checkout link map.
  *
  * Key format: `${productId}:${variant}:${color}:${size}`
- *   - productId: caffeine-reset | slow-pour | dallah-qahwa | on-dum | leave-ticket | one-bag-for-me
+ *   - productId: mummy-called | biryani-coma | ammas-plate | caffeine-reset | slow-pour | dallah-qahwa | on-dum | leave-ticket | one-bag-for-me
  *   - variant:   tee | mug
  *   - color:     white | paper | charcoal
  *   - size:      S | M | L | XL | 2XL  (use "-" for mugs, which have no size)
  *
- * These Razorpay Payment Page URLs are live. All colours and sizes of each
+ * Launch-one Razorpay Payment Page URLs are live. All colours and sizes of each
  * product + variant share one Payment Page; shoppers choose size there.
  * Product pages show both Buy links, with no mailto notify fallback.
+ *
+ * Gamer Drop URLs are stored below but are not live yet. getBuyLink() returns
+ * an empty string for those slugs until GAMER_DROP_CHECKOUT_LIVE is true.
+ * Flip that flag to turn the stored links on. Do not point buttons at the
+ * URLs while the flag is false.
  *
  * Do not put Razorpay API keys in this file or anywhere in the app.
  */
 export const CONTACT_EMAIL = "wdhxb7q992wc@mail.grokbot.com";
+
+/** Flip to true once the six Gamer Drop Razorpay payment pages are live. */
+export const GAMER_DROP_CHECKOUT_LIVE = false;
+
+const GAMER_DROP_PRODUCTS = new Set(["mummy-called", "biryani-coma", "ammas-plate"]);
 
 export type BuyKey = string;
 
@@ -125,6 +135,61 @@ export const buyLinks: Record<BuyKey, string> = {
   "one-bag-for-me:tee:charcoal:2XL": "https://rzp.io/rzp/fulldum-one-bag-for-me-tee",
   "one-bag-for-me:mug:white:-": "https://rzp.io/rzp/fulldum-one-bag-for-me-mug",
   "one-bag-for-me:mug:charcoal:-": "https://rzp.io/rzp/fulldum-one-bag-for-me-mug",
+  // Gamer Drop — stored for a one-line switch-on; buttons stay off until GAMER_DROP_CHECKOUT_LIVE.
+  // Mummy Called
+  "mummy-called:tee:white:S": "https://rzp.io/rzp/fulldum-mummy-called-tee",
+  "mummy-called:tee:white:M": "https://rzp.io/rzp/fulldum-mummy-called-tee",
+  "mummy-called:tee:white:L": "https://rzp.io/rzp/fulldum-mummy-called-tee",
+  "mummy-called:tee:white:XL": "https://rzp.io/rzp/fulldum-mummy-called-tee",
+  "mummy-called:tee:white:2XL": "https://rzp.io/rzp/fulldum-mummy-called-tee",
+  "mummy-called:tee:paper:S": "https://rzp.io/rzp/fulldum-mummy-called-tee",
+  "mummy-called:tee:paper:M": "https://rzp.io/rzp/fulldum-mummy-called-tee",
+  "mummy-called:tee:paper:L": "https://rzp.io/rzp/fulldum-mummy-called-tee",
+  "mummy-called:tee:paper:XL": "https://rzp.io/rzp/fulldum-mummy-called-tee",
+  "mummy-called:tee:paper:2XL": "https://rzp.io/rzp/fulldum-mummy-called-tee",
+  "mummy-called:tee:charcoal:S": "https://rzp.io/rzp/fulldum-mummy-called-tee",
+  "mummy-called:tee:charcoal:M": "https://rzp.io/rzp/fulldum-mummy-called-tee",
+  "mummy-called:tee:charcoal:L": "https://rzp.io/rzp/fulldum-mummy-called-tee",
+  "mummy-called:tee:charcoal:XL": "https://rzp.io/rzp/fulldum-mummy-called-tee",
+  "mummy-called:tee:charcoal:2XL": "https://rzp.io/rzp/fulldum-mummy-called-tee",
+  "mummy-called:mug:white:-": "https://rzp.io/rzp/fulldum-mummy-called-mug",
+  "mummy-called:mug:charcoal:-": "https://rzp.io/rzp/fulldum-mummy-called-mug",
+  // Biryani Coma
+  "biryani-coma:tee:white:S": "https://rzp.io/rzp/fulldum-biryani-coma-tee",
+  "biryani-coma:tee:white:M": "https://rzp.io/rzp/fulldum-biryani-coma-tee",
+  "biryani-coma:tee:white:L": "https://rzp.io/rzp/fulldum-biryani-coma-tee",
+  "biryani-coma:tee:white:XL": "https://rzp.io/rzp/fulldum-biryani-coma-tee",
+  "biryani-coma:tee:white:2XL": "https://rzp.io/rzp/fulldum-biryani-coma-tee",
+  "biryani-coma:tee:paper:S": "https://rzp.io/rzp/fulldum-biryani-coma-tee",
+  "biryani-coma:tee:paper:M": "https://rzp.io/rzp/fulldum-biryani-coma-tee",
+  "biryani-coma:tee:paper:L": "https://rzp.io/rzp/fulldum-biryani-coma-tee",
+  "biryani-coma:tee:paper:XL": "https://rzp.io/rzp/fulldum-biryani-coma-tee",
+  "biryani-coma:tee:paper:2XL": "https://rzp.io/rzp/fulldum-biryani-coma-tee",
+  "biryani-coma:tee:charcoal:S": "https://rzp.io/rzp/fulldum-biryani-coma-tee",
+  "biryani-coma:tee:charcoal:M": "https://rzp.io/rzp/fulldum-biryani-coma-tee",
+  "biryani-coma:tee:charcoal:L": "https://rzp.io/rzp/fulldum-biryani-coma-tee",
+  "biryani-coma:tee:charcoal:XL": "https://rzp.io/rzp/fulldum-biryani-coma-tee",
+  "biryani-coma:tee:charcoal:2XL": "https://rzp.io/rzp/fulldum-biryani-coma-tee",
+  "biryani-coma:mug:white:-": "https://rzp.io/rzp/fulldum-biryani-coma-mug",
+  "biryani-coma:mug:charcoal:-": "https://rzp.io/rzp/fulldum-biryani-coma-mug",
+  // Amma's Plate
+  "ammas-plate:tee:white:S": "https://rzp.io/rzp/fulldum-ammas-plate-tee",
+  "ammas-plate:tee:white:M": "https://rzp.io/rzp/fulldum-ammas-plate-tee",
+  "ammas-plate:tee:white:L": "https://rzp.io/rzp/fulldum-ammas-plate-tee",
+  "ammas-plate:tee:white:XL": "https://rzp.io/rzp/fulldum-ammas-plate-tee",
+  "ammas-plate:tee:white:2XL": "https://rzp.io/rzp/fulldum-ammas-plate-tee",
+  "ammas-plate:tee:paper:S": "https://rzp.io/rzp/fulldum-ammas-plate-tee",
+  "ammas-plate:tee:paper:M": "https://rzp.io/rzp/fulldum-ammas-plate-tee",
+  "ammas-plate:tee:paper:L": "https://rzp.io/rzp/fulldum-ammas-plate-tee",
+  "ammas-plate:tee:paper:XL": "https://rzp.io/rzp/fulldum-ammas-plate-tee",
+  "ammas-plate:tee:paper:2XL": "https://rzp.io/rzp/fulldum-ammas-plate-tee",
+  "ammas-plate:tee:charcoal:S": "https://rzp.io/rzp/fulldum-ammas-plate-tee",
+  "ammas-plate:tee:charcoal:M": "https://rzp.io/rzp/fulldum-ammas-plate-tee",
+  "ammas-plate:tee:charcoal:L": "https://rzp.io/rzp/fulldum-ammas-plate-tee",
+  "ammas-plate:tee:charcoal:XL": "https://rzp.io/rzp/fulldum-ammas-plate-tee",
+  "ammas-plate:tee:charcoal:2XL": "https://rzp.io/rzp/fulldum-ammas-plate-tee",
+  "ammas-plate:mug:white:-": "https://rzp.io/rzp/fulldum-ammas-plate-mug",
+  "ammas-plate:mug:charcoal:-": "https://rzp.io/rzp/fulldum-ammas-plate-mug",
 };
 
 export function buyLinkKey(productId: string, variant: string, color: string, size: string = "-"): BuyKey {
@@ -132,6 +197,7 @@ export function buyLinkKey(productId: string, variant: string, color: string, si
 }
 
 export function getBuyLink(productId: string, variant: string, color: string, size: string = "-"): string {
+  if (!GAMER_DROP_CHECKOUT_LIVE && GAMER_DROP_PRODUCTS.has(productId)) return "";
   return buyLinks[buyLinkKey(productId, variant, color, size)] ?? "";
 }
 

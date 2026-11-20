@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ProductCard } from "@/components/ProductCard";
-import { products } from "@/lib/products";
+import { gamerDrop, launchOne } from "@/lib/products";
 import { pageHead } from "@/lib/seo";
 import { publicPath } from "@/config/site";
 
@@ -8,7 +8,7 @@ export const Route = createFileRoute("/")({
   head: () =>
     pageHead({
       title: "FullDum — Food and desi life, on merch.",
-      description: "FullDum is merch for food and desi life: chai, coffee, biryani, home. Tees ₹799 and mugs ₹449, printed in India, shipping included.",
+      description: "The Gamer Drop is in: Mummy Called, Biryani Coma and Amma's Plate. Tees ₹799 and mugs ₹449, printed in India, shipping included.",
       path: "/",
     }),
   component: Home,
@@ -23,8 +23,8 @@ function Home() {
           Food and desi life, on merch.
         </h1>
         <div className="mt-8 flex justify-center gap-3">
-          <Link to="/shop" className="btn-ink">Shop the launch</Link>
-          <Link to="/shipping" className="btn-line">How shipping works</Link>
+          <a href="#gamer-drop" className="btn-ink">Shop the Gamer Drop</a>
+          <Link to="/shop" className="btn-line">See all prints</Link>
         </div>
       </section>
 
@@ -42,7 +42,20 @@ function Home() {
         </div>
       </section>
 
-      <section aria-labelledby="launch" className="mx-auto max-w-6xl px-5 pt-16">
+      <section id="gamer-drop" aria-labelledby="gamer-drop-heading" className="mx-auto max-w-6xl px-5 pt-16">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <p className="kicker text-muted-foreground">Gamer Drop</p>
+            <h2 id="gamer-drop-heading" className="mt-2 text-3xl font-bold md:text-4xl">Come downstairs. The plate is cleared.</h2>
+          </div>
+        </div>
+        <p className="mt-3 max-w-xl text-muted-foreground">Three new prints. Tees ₹799, mugs ₹449, shipping included.</p>
+        <div className="mt-10 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          {gamerDrop.map((p) => <ProductCard key={p.slug} product={p} />)}
+        </div>
+      </section>
+
+      <section aria-labelledby="launch" className="mx-auto max-w-6xl px-5 pt-16 pb-8">
         <div className="flex items-end justify-between gap-4">
           <div>
             <p className="kicker text-muted-foreground">Launch one</p>
@@ -51,10 +64,9 @@ function Home() {
           <Link to="/shop" className="hidden text-sm font-medium underline decoration-turmeric decoration-2 underline-offset-4 sm:block">See all</Link>
         </div>
         <div className="mt-10 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((p) => <ProductCard key={p.slug} product={p} />)}
+          {launchOne.map((p) => <ProductCard key={p.slug} product={p} />)}
         </div>
       </section>
     </>
   );
 }
-
