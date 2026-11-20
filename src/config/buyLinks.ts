@@ -11,17 +11,16 @@
  * product + variant share one Payment Page; shoppers choose size there.
  * Product pages show both Buy links, with no mailto notify fallback.
  *
- * Gamer Drop URLs are stored below but are not live yet. getBuyLink() returns
- * an empty string for those slugs until GAMER_DROP_CHECKOUT_LIVE is true.
- * Flip that flag to turn the stored links on. Do not point buttons at the
- * URLs while the flag is false.
+ * Gamer Drop payment pages are live. getBuyLink() returns those URLs when
+ * GAMER_DROP_CHECKOUT_LIVE is true, and an empty string if the flag is flipped
+ * off. That flag is the one-line switch for Gamer Drop checkout.
  *
  * Do not put Razorpay API keys in this file or anywhere in the app.
  */
 export const CONTACT_EMAIL = "wdhxb7q992wc@mail.grokbot.com";
 
 /** Flip to true once the six Gamer Drop Razorpay payment pages are live. */
-export const GAMER_DROP_CHECKOUT_LIVE = false;
+export const GAMER_DROP_CHECKOUT_LIVE = true;
 
 const GAMER_DROP_PRODUCTS = new Set(["mummy-called", "biryani-coma", "ammas-plate"]);
 
@@ -135,7 +134,7 @@ export const buyLinks: Record<BuyKey, string> = {
   "one-bag-for-me:tee:charcoal:2XL": "https://rzp.io/rzp/fulldum-one-bag-for-me-tee",
   "one-bag-for-me:mug:white:-": "https://rzp.io/rzp/fulldum-one-bag-for-me-mug",
   "one-bag-for-me:mug:charcoal:-": "https://rzp.io/rzp/fulldum-one-bag-for-me-mug",
-  // Gamer Drop — stored for a one-line switch-on; buttons stay off until GAMER_DROP_CHECKOUT_LIVE.
+  // Gamer Drop — live; gated by GAMER_DROP_CHECKOUT_LIVE.
   // Mummy Called
   "mummy-called:tee:white:S": "https://rzp.io/rzp/fulldum-mummy-called-tee",
   "mummy-called:tee:white:M": "https://rzp.io/rzp/fulldum-mummy-called-tee",
