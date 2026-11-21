@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { PRODUCT_SLUGS, PUBLIC_PATHS, SITE_URL, siteUrl } from "@/config/site";
+import { PRODUCT_SLUGS, PUBLIC_PATHS, SITE_URL, publicPath, siteUrl } from "@/config/site";
 import { pageHead } from "@/lib/seo";
 
 const HOST = "https://embraceais.github.io/fulldum-store";
@@ -23,6 +23,11 @@ describe("absolute site URLs", () => {
     expect(siteUrl("/")).toBe(`${HOST}/`);
     expect(siteUrl("shipping")).toBe(`${HOST}/shipping`);
     expect(siteUrl("https://example.com/x")).toBe("https://example.com/x");
+  });
+
+  it("siteUrl does not double BASE_PATH when given a publicPath() asset", () => {
+    expect(siteUrl(publicPath("/mockups/emi-pe-rave/tee.jpg"))).toBe(`${HOST}/mockups/emi-pe-rave/tee.jpg`);
+    expect(siteUrl("/mockups/emi-pe-rave/tee.jpg")).toBe(`${HOST}/mockups/emi-pe-rave/tee.jpg`);
   });
 
   it("canonical, og:url, og:image and twitter:image are absolute on the published host", () => {

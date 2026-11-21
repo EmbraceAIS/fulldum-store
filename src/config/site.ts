@@ -37,10 +37,15 @@ export const PUBLIC_PATHS: string[] = [
   ...PRODUCT_SLUGS.map((slug) => `/product/${slug}`),
 ];
 
-/** Absolute URL on SITE_URL for a site path. Already-absolute URLs pass through. */
+/** Absolute URL on SITE_URL for a site path. Already-absolute URLs pass through.
+ *  publicPath() values already include BASE_PATH; strip that prefix so we do
+ *  not emit …/fulldum-store/fulldum-store/…. */
 export function siteUrl(path = "/") {
   if (/^https?:\/\//i.test(path)) return path;
-  const p = path.startsWith("/") ? path : `/${path}`;
+  let p = path.startsWith("/") ? path : `/${path}`;
+  if (p === BASE_PATH || p.startsWith(`${BASE_PATH}/`)) {
+    p = p.slice(BASE_PATH.length) || "/";
+  }
   return `${SITE_URL}${p}`;
 }
 
