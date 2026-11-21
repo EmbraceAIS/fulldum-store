@@ -13,6 +13,7 @@ export const BASE_PATH = "/fulldum-store";
 export const SITE_URL = "https://embraceais.github.io/fulldum-store";
 
 /** Shop order. Drives the product routes, prerender and the sitemap. */
+export const CONCERT_DROP_SLUGS = ["emi-pe-rave"] as const;
 export const GAMER_DROP_SLUGS = ["mummy-called", "biryani-coma", "ammas-plate"] as const;
 export const LAUNCH_ONE_SLUGS = [
   "caffeine-reset",
@@ -22,7 +23,7 @@ export const LAUNCH_ONE_SLUGS = [
   "leave-ticket",
   "one-bag-for-me",
 ] as const;
-export const PRODUCT_SLUGS = [...GAMER_DROP_SLUGS, ...LAUNCH_ONE_SLUGS] as const;
+export const PRODUCT_SLUGS = [...CONCERT_DROP_SLUGS, ...GAMER_DROP_SLUGS, ...LAUNCH_ONE_SLUGS] as const;
 
 /** Every page a crawler should be told about. */
 export const PUBLIC_PATHS: string[] = [

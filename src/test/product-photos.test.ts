@@ -10,6 +10,7 @@ describe("launch photo selection", () => {
     ["on-dum", "mug"],
     ["leave-ticket", "tee"],
     ["one-bag-for-me", "tee"],
+    ["emi-pe-rave", "tee"],
     ["mummy-called", "tee"],
     ["biryani-coma", "tee"],
     ["ammas-plate", "tee"],

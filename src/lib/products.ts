@@ -8,7 +8,7 @@ export type Size = (typeof SIZES)[number];
 export const PRICES: Record<Variant, number> = { tee: 799, mug: 449 };
 export const COLOR_LABEL: Record<Color, string> = { white: "White", paper: "Paper", charcoal: "Charcoal" };
 
-export type Collection = "gamer-drop" | "launch-one";
+export type Collection = "concert-drop" | "gamer-drop" | "launch-one";
 
 export interface Product {
   slug: string;
@@ -27,6 +27,7 @@ const stories: Record<string, string> = {
   "on-dum": "The handi is sealed. The dough is doing its job. You are not lifting that lid to \u201cjust check.\u201d",
   "leave-ticket": "Every desk in the Gulf has one invisible calendar. This is the only countdown anyone actually reads.",
   "one-bag-for-me": "Two shirts and a charger for you. Forty kilos of dates, chocolates and perfume for everyone else.",
+  "emi-pe-rave": "The ticket went on EMI. You still went. Paisa gaya, vibe aayi.",
   "mummy-called": "The raid was going well. Then the landline rang, and downstairs won.",
   "biryani-coma": "The plate is empty. The controller can wait. Do not disturb.",
   "ammas-plate": "You finished it. She noticed. That is the only score that matters.",
@@ -40,13 +41,14 @@ export const products: Product[] = data.products.map((p) => ({
   short: p.short,
   defaultVariant: MUG_LED.has(p.slug) ? "mug" : "tee",
   story: stories[p.slug] ?? "",
-  collection: (p.collection === "gamer-drop" ? "gamer-drop" : "launch-one") as Collection,
+  collection: (["concert-drop", "gamer-drop"].includes(p.collection) ? p.collection : "launch-one") as Collection,
   colors: {
     tee: p.colors as Color[],
     mug: (p.slug === "leave-ticket" ? ["white"] : ["white", "charcoal"]) as Color[],
   },
 }));
 
+export const concertDrop = products.filter((p) => p.collection === "concert-drop");
 export const gamerDrop = products.filter((p) => p.collection === "gamer-drop");
 export const launchOne = products.filter((p) => p.collection === "launch-one");
 

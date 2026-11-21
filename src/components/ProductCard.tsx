@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { GAMER_DROP_CHECKOUT_LIVE } from "@/config/buyLinks";
+import { EMI_PE_RAVE_CHECKOUT_LIVE, GAMER_DROP_CHECKOUT_LIVE } from "@/config/buyLinks";
 import { formatINR, mockupSrc, PRICES, type Product } from "@/lib/products";
 
 export function ProductCard({ product }: { product: Product }) {
@@ -27,7 +27,7 @@ export function ProductCard({ product }: { product: Product }) {
       </h3>
       <p className="mt-1 text-sm text-muted-foreground">
         Tee {formatINR(PRICES.tee)} · Mug {formatINR(PRICES.mug)} · shipping included
-        {product.collection === "gamer-drop" && !GAMER_DROP_CHECKOUT_LIVE ? " · Coming soon" : ""}
+        {(product.collection === "gamer-drop" && !GAMER_DROP_CHECKOUT_LIVE) || (product.collection === "concert-drop" && !EMI_PE_RAVE_CHECKOUT_LIVE) ? " · Coming soon" : ""}
       </p>
     </Link>
   );

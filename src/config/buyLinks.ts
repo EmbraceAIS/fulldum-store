@@ -2,7 +2,7 @@
  * FullDum checkout link map.
  *
  * Key format: `${productId}:${variant}:${color}:${size}`
- *   - productId: mummy-called | biryani-coma | ammas-plate | caffeine-reset | slow-pour | dallah-qahwa | on-dum | leave-ticket | one-bag-for-me
+ *   - productId: emi-pe-rave | mummy-called | biryani-coma | ammas-plate | caffeine-reset | slow-pour | dallah-qahwa | on-dum | leave-ticket | one-bag-for-me
  *   - variant:   tee | mug
  *   - color:     white | paper | charcoal
  *   - size:      S | M | L | XL | 2XL  (use "-" for mugs, which have no size)
@@ -15,6 +15,11 @@
  * GAMER_DROP_CHECKOUT_LIVE is true, and an empty string if the flag is flipped
  * off. That flag is the one-line switch for Gamer Drop checkout.
  *
+ * EMI Pe Rave payment pages are not created yet. Intended URLs are stored
+ * below and flagged checkout pending. getBuyLink() returns an empty string
+ * while EMI_PE_RAVE_CHECKOUT_LIVE is false, so Buy buttons stay disabled
+ * instead of opening a dead link. Flip the flag once the pages are live.
+ *
  * Do not put Razorpay API keys in this file or anywhere in the app.
  */
 export const CONTACT_EMAIL = "wdhxb7q992wc@mail.grokbot.com";
@@ -22,11 +27,33 @@ export const CONTACT_EMAIL = "wdhxb7q992wc@mail.grokbot.com";
 /** Flip to true once the six Gamer Drop Razorpay payment pages are live. */
 export const GAMER_DROP_CHECKOUT_LIVE = true;
 
+/** Flip to true once the EMI Pe Rave Razorpay payment pages are live. */
+export const EMI_PE_RAVE_CHECKOUT_LIVE = false;
+
 const GAMER_DROP_PRODUCTS = new Set(["mummy-called", "biryani-coma", "ammas-plate"]);
 
 export type BuyKey = string;
 
 export const buyLinks: Record<BuyKey, string> = {
+  // EMI Pe Rave — checkout pending
+  "emi-pe-rave:tee:white:S": "https://rzp.io/rzp/fulldum-emi-pe-rave-tee",
+  "emi-pe-rave:tee:white:M": "https://rzp.io/rzp/fulldum-emi-pe-rave-tee",
+  "emi-pe-rave:tee:white:L": "https://rzp.io/rzp/fulldum-emi-pe-rave-tee",
+  "emi-pe-rave:tee:white:XL": "https://rzp.io/rzp/fulldum-emi-pe-rave-tee",
+  "emi-pe-rave:tee:white:2XL": "https://rzp.io/rzp/fulldum-emi-pe-rave-tee",
+  "emi-pe-rave:tee:paper:S": "https://rzp.io/rzp/fulldum-emi-pe-rave-tee",
+  "emi-pe-rave:tee:paper:M": "https://rzp.io/rzp/fulldum-emi-pe-rave-tee",
+  "emi-pe-rave:tee:paper:L": "https://rzp.io/rzp/fulldum-emi-pe-rave-tee",
+  "emi-pe-rave:tee:paper:XL": "https://rzp.io/rzp/fulldum-emi-pe-rave-tee",
+  "emi-pe-rave:tee:paper:2XL": "https://rzp.io/rzp/fulldum-emi-pe-rave-tee",
+  "emi-pe-rave:tee:charcoal:S": "https://rzp.io/rzp/fulldum-emi-pe-rave-tee",
+  "emi-pe-rave:tee:charcoal:M": "https://rzp.io/rzp/fulldum-emi-pe-rave-tee",
+  "emi-pe-rave:tee:charcoal:L": "https://rzp.io/rzp/fulldum-emi-pe-rave-tee",
+  "emi-pe-rave:tee:charcoal:XL": "https://rzp.io/rzp/fulldum-emi-pe-rave-tee",
+  "emi-pe-rave:tee:charcoal:2XL": "https://rzp.io/rzp/fulldum-emi-pe-rave-tee",
+  "emi-pe-rave:mug:white:-": "https://rzp.io/rzp/fulldum-emi-pe-rave-mug",
+  "emi-pe-rave:mug:charcoal:-": "https://rzp.io/rzp/fulldum-emi-pe-rave-mug",
+
   // Caffeine Reset
   "caffeine-reset:tee:white:S": "https://rzp.io/rzp/fulldum-caffeine-reset-tee",
   "caffeine-reset:tee:white:M": "https://rzp.io/rzp/fulldum-caffeine-reset-tee",
@@ -197,6 +224,7 @@ export function buyLinkKey(productId: string, variant: string, color: string, si
 
 export function getBuyLink(productId: string, variant: string, color: string, size: string = "-"): string {
   if (!GAMER_DROP_CHECKOUT_LIVE && GAMER_DROP_PRODUCTS.has(productId)) return "";
+  if (!EMI_PE_RAVE_CHECKOUT_LIVE && productId === "emi-pe-rave") return "";
   return buyLinks[buyLinkKey(productId, variant, color, size)] ?? "";
 }
 

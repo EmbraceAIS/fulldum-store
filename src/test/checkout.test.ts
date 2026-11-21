@@ -1,11 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { buyLinks, GAMER_DROP_CHECKOUT_LIVE, getBuyLink } from "@/config/buyLinks";
+import { buyLinks, EMI_PE_RAVE_CHECKOUT_LIVE, GAMER_DROP_CHECKOUT_LIVE, getBuyLink } from "@/config/buyLinks";
 import { buyAction } from "@/lib/checkout";
 import { getProduct, PRICES } from "@/lib/products";
 import { SHIPPING_DAYS } from "@/lib/shipping";
 
 const LIVE_SLUGS = ["caffeine-reset", "slow-pour", "dallah-qahwa", "on-dum", "leave-ticket", "one-bag-for-me"];
 const GAMER_DROP_SLUGS = ["mummy-called", "biryani-coma", "ammas-plate"];
+const CONCERT_DROP_SLUGS = ["emi-pe-rave"];
 
 describe("checkout rules", () => {
   it.each(LIVE_SLUGS)("%s uses the supplied payment pages for every existing colour and size", (slug) => {
@@ -40,8 +41,25 @@ describe("checkout rules", () => {
       expect(action.rel).toBe("noopener noreferrer");
     }
   });
+
+  it.each(CONCERT_DROP_SLUGS)("%s keeps checkout pending until the payment pages are live", (slug) => {
+    expect(EMI_PE_RAVE_CHECKOUT_LIVE).toBe(false);
+    const entries = Object.entries(buyLinks).filter(([key]) => key.startsWith(`${slug}:`));
+    expect(entries).toHaveLength(17);
+    for (const [key, url] of entries) {
+      const variant = key.split(":")[1];
+      expect(url).toBe(`https://rzp.io/rzp/fulldum-${slug}-${variant}`);
+    }
+    for (const variant of ["tee", "mug"] as const) {
+      expect(getBuyLink(slug, variant, "white", variant === "tee" ? "M" : "-")).toBe("");
+      const action = buyAction(slug, variant);
+      expect(action.href).toBe("");
+      expect(action.disabled).toBe(true);
+      expect(action.label).toMatch(/Coming soon/);
+    }
+  });
   it("keeps exactly the existing key set", () => {
-    const expected = [...GAMER_DROP_SLUGS, ...LIVE_SLUGS].flatMap((slug) => [
+    const expected = [...CONCERT_DROP_SLUGS, ...GAMER_DROP_SLUGS, ...LIVE_SLUGS].flatMap((slug) => [
       ...(slug === "leave-ticket" ? ["white", "paper"] : ["white", "paper", "charcoal"]).flatMap((color) =>
         ["S", "M", "L", "XL", "2XL"].map((size) => `${slug}:tee:${color}:${size}`)),
       ...(slug === "leave-ticket" ? ["white"] : ["white", "charcoal"]).map((color) => `${slug}:mug:${color}:-`),

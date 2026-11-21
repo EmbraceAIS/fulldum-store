@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ProductCard } from "@/components/ProductCard";
-import { gamerDrop, launchOne } from "@/lib/products";
+import { concertDrop, gamerDrop, launchOne } from "@/lib/products";
 import { pageHead } from "@/lib/seo";
 import { publicPath } from "@/config/site";
 
@@ -8,7 +8,7 @@ export const Route = createFileRoute("/")({
   head: () =>
     pageHead({
       title: "FullDum — Food and desi life, on merch.",
-      description: "The Gamer Drop is in: Mummy Called, Biryani Coma and Amma's Plate. Tees ₹799 and mugs ₹449, printed in India, shipping included.",
+      description: "EMI Pe Rave is in for concert season, plus the Gamer Drop and the first FullDum prints. Tees ₹799 and mugs ₹449, printed in India, shipping included.",
       path: "/",
     }),
   component: Home,
@@ -23,7 +23,7 @@ function Home() {
           Food and desi life, on merch.
         </h1>
         <div className="mt-8 flex justify-center gap-3">
-          <a href="#gamer-drop" className="btn-ink">Shop the Gamer Drop</a>
+          <a href="#concert-season" className="btn-ink">Shop EMI Pe Rave</a>
           <Link to="/shop" className="btn-line">See all prints</Link>
         </div>
       </section>
@@ -39,6 +39,20 @@ function Home() {
             <p>FullDum is merch for food and desi life. The first cup. The lid you are not supposed to lift. The bag that is mostly gifts.</p>
             <p>Witty and warm, never loud. We print tees and mugs in India, and we ship them prepaid.</p>
           </div>
+        </div>
+      </section>
+
+
+      <section id="concert-season" aria-labelledby="concert-season-heading" className="mx-auto max-w-6xl px-5 pt-16">
+        <div className="flex items-end justify-between gap-4">
+          <div>
+            <p className="kicker text-muted-foreground">Concert season</p>
+            <h2 id="concert-season-heading" className="mt-2 text-3xl font-bold md:text-4xl">Paisa gaya, vibe aayi.</h2>
+          </div>
+        </div>
+        <p className="mt-3 max-w-xl text-muted-foreground">One new print for the ticket that went on EMI. Tee ₹799, mug ₹449, shipping included.</p>
+        <div className="mt-10 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          {concertDrop.map((p) => <ProductCard key={p.slug} product={p} />)}
         </div>
       </section>
 

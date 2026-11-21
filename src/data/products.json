@@ -1,6 +1,21 @@
 {
   "products": [
     {
+      "slug": "emi-pe-rave",
+      "title": "EMI Pe Rave — Paisa Gaya, Vibe Aayi",
+      "short": "The ticket went on EMI. The chai went on the speaker. Paisa gaya, vibe aayi.",
+      "price_tee": 799,
+      "price_mug": 449,
+      "colors": [
+        "white",
+        "paper",
+        "charcoal"
+      ],
+      "id": "emi-pe-rave",
+      "design_id": "10-emi-pe-rave",
+      "collection": "concert-drop"
+    },
+    {
       "slug": "mummy-called",
       "title": "Mummy Called — Come Downstairs",
       "short": "The raid was going well. Then the landline rang, and downstairs won.",
