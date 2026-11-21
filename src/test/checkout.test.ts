@@ -42,8 +42,8 @@ describe("checkout rules", () => {
     }
   });
 
-  it.each(CONCERT_DROP_SLUGS)("%s keeps checkout pending until the payment pages are live", (slug) => {
-    expect(EMI_PE_RAVE_CHECKOUT_LIVE).toBe(false);
+  it.each(CONCERT_DROP_SLUGS)("%s uses the live EMI Pe Rave payment pages", (slug) => {
+    expect(EMI_PE_RAVE_CHECKOUT_LIVE).toBe(true);
     const entries = Object.entries(buyLinks).filter(([key]) => key.startsWith(`${slug}:`));
     expect(entries).toHaveLength(17);
     for (const [key, url] of entries) {
@@ -51,11 +51,12 @@ describe("checkout rules", () => {
       expect(url).toBe(`https://rzp.io/rzp/fulldum-${slug}-${variant}`);
     }
     for (const variant of ["tee", "mug"] as const) {
-      expect(getBuyLink(slug, variant, "white", variant === "tee" ? "M" : "-")).toBe("");
+      expect(getBuyLink(slug, variant, "white", variant === "tee" ? "M" : "-")).toBe(`https://rzp.io/rzp/fulldum-${slug}-${variant}`);
       const action = buyAction(slug, variant);
-      expect(action.href).toBe("");
-      expect(action.disabled).toBe(true);
-      expect(action.label).toMatch(/Coming soon/);
+      expect(action.href).toBe(`https://rzp.io/rzp/fulldum-${slug}-${variant}`);
+      expect(action.disabled).toBe(false);
+      expect(action.target).toBe("_blank");
+      expect(action.rel).toBe("noopener noreferrer");
     }
   });
   it("keeps exactly the existing key set", () => {

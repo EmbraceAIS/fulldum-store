@@ -15,10 +15,9 @@
  * GAMER_DROP_CHECKOUT_LIVE is true, and an empty string if the flag is flipped
  * off. That flag is the one-line switch for Gamer Drop checkout.
  *
- * EMI Pe Rave payment pages are not created yet. Intended URLs are stored
- * below and flagged checkout pending. getBuyLink() returns an empty string
- * while EMI_PE_RAVE_CHECKOUT_LIVE is false, so Buy buttons stay disabled
- * instead of opening a dead link. Flip the flag once the pages are live.
+ * EMI Pe Rave payment pages are live. getBuyLink() returns those URLs when
+ * EMI_PE_RAVE_CHECKOUT_LIVE is true, and an empty string if the flag is
+ * flipped off. That flag is the one-line switch for EMI Pe Rave checkout.
  *
  * Do not put Razorpay API keys in this file or anywhere in the app.
  */
@@ -28,14 +27,14 @@ export const CONTACT_EMAIL = "wdhxb7q992wc@mail.grokbot.com";
 export const GAMER_DROP_CHECKOUT_LIVE = true;
 
 /** Flip to true once the EMI Pe Rave Razorpay payment pages are live. */
-export const EMI_PE_RAVE_CHECKOUT_LIVE = false;
+export const EMI_PE_RAVE_CHECKOUT_LIVE = true;
 
 const GAMER_DROP_PRODUCTS = new Set(["mummy-called", "biryani-coma", "ammas-plate"]);
 
 export type BuyKey = string;
 
 export const buyLinks: Record<BuyKey, string> = {
-  // EMI Pe Rave — checkout pending
+  // EMI Pe Rave
   "emi-pe-rave:tee:white:S": "https://rzp.io/rzp/fulldum-emi-pe-rave-tee",
   "emi-pe-rave:tee:white:M": "https://rzp.io/rzp/fulldum-emi-pe-rave-tee",
   "emi-pe-rave:tee:white:L": "https://rzp.io/rzp/fulldum-emi-pe-rave-tee",
