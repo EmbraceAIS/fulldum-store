@@ -1,6 +1,6 @@
 // @lovable.dev/vite-tanstack-config already includes tanstackStart, react, tailwind, nitro etc.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
-import { BASE_PATH, PRODUCT_SLUGS } from "./src/config/site";
+import { BASE_PATH, BLOG_SLUGS, PRODUCT_SLUGS } from "./src/config/site";
 import { writeSitemap } from "./scripts/write-sitemap";
 
 const sitemap = {
@@ -22,6 +22,8 @@ export default defineConfig({
     pages: [
       ...["/", "/shop", "/shipping", "/returns", "/privacy", "/terms", "/contact"].map((path) => ({ path })),
       ...PRODUCT_SLUGS.map((slug) => ({ path: `/product/${slug}` })),
+      { path: "/blog" },
+      ...BLOG_SLUGS.map((slug) => ({ path: `/blog/${slug}` })),
     ],
     prerender: { enabled: true, autoStaticPathsDiscovery: false },
   },

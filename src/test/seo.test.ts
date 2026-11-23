@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { PRODUCT_SLUGS, PUBLIC_PATHS, SITE_URL, publicPath, siteUrl } from "@/config/site";
+import { BLOG_SLUGS, PRODUCT_SLUGS, PUBLIC_PATHS, SITE_URL, publicPath, siteUrl } from "@/config/site";
 import { pageHead } from "@/lib/seo";
 
 const HOST = "https://embraceais.github.io/fulldum-store";
@@ -40,7 +40,7 @@ describe("absolute site URLs", () => {
 
   it("sitemap lists every public path as an absolute URL", () => {
     const xml = readFileSync("public/sitemap.xml", "utf8");
-    expect(PUBLIC_PATHS).toHaveLength(7 + PRODUCT_SLUGS.length);
+    expect(PUBLIC_PATHS).toHaveLength(8 + PRODUCT_SLUGS.length + BLOG_SLUGS.length);
     for (const path of PUBLIC_PATHS) expect(xml).toContain(`<loc>${HOST}${path}</loc>`);
     expect(xml).not.toMatch(/<loc>\//);
   });

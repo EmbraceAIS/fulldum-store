@@ -27,6 +27,7 @@ export function Footer() {
           <p className="mt-4 font-warm italic text-lg opacity-90">Put the kettle on. We will wait.</p>
         </div>
         <nav aria-label="Footer" className="flex flex-wrap items-start gap-x-8 gap-y-3 text-sm md:justify-end">
+          <Link to="/blog" className="hover:text-turmeric">Journal</Link>
           <Link to="/returns" className="hover:text-turmeric">Returns</Link>
           <Link to="/privacy" className="hover:text-turmeric">Privacy</Link>
           <Link to="/terms" className="hover:text-turmeric">Terms</Link>

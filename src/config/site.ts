@@ -25,6 +25,9 @@ export const LAUNCH_ONE_SLUGS = [
 ] as const;
 export const PRODUCT_SLUGS = [...CONCERT_DROP_SLUGS, ...GAMER_DROP_SLUGS, ...LAUNCH_ONE_SLUGS] as const;
 
+/** Journal posts, newest first. Each slug has its own file in src/routes/blog/. */
+export const BLOG_SLUGS = ["what-to-wear-to-a-concert-in-india"] as const;
+
 /** Every page a crawler should be told about. */
 export const PUBLIC_PATHS: string[] = [
   "/",
@@ -35,6 +38,8 @@ export const PUBLIC_PATHS: string[] = [
   "/terms",
   "/contact",
   ...PRODUCT_SLUGS.map((slug) => `/product/${slug}`),
+  "/blog",
+  ...BLOG_SLUGS.map((slug) => `/blog/${slug}`),
 ];
 
 /** Absolute URL on SITE_URL for a site path. Already-absolute URLs pass through.
