@@ -4,12 +4,14 @@ import { blogPost } from "@/config/blog";
 import { siteUrl } from "@/config/site";
 import { pageHead } from "@/lib/seo";
 import * as concertOutfits from "@/content/blog/what-to-wear-to-a-concert-in-india";
+import * as biryaniComa from "@/content/blog/why-biryani-makes-you-sleepy";
 import { formatDate } from "./index";
 
 type PostModule = { Body: ComponentType; faq: { q: string; a: string }[] };
 
 const CONTENT: Record<string, PostModule> = {
   "what-to-wear-to-a-concert-in-india": concertOutfits,
+  "why-biryani-makes-you-sleepy": biryaniComa,
 };
 
 export const Route = createFileRoute("/blog/$slug")({
@@ -82,7 +84,7 @@ function PostPage() {
         )}
       </div>
       <div className="mt-12 flex flex-wrap gap-3">
-        <Link to="/product/$slug" params={{ slug: "emi-pe-rave" }} className="btn-ink">See EMI Pe Rave</Link>
+        <Link to="/product/$slug" params={{ slug: post.product.slug }} className="btn-ink">{post.product.label}</Link>
         <Link to="/shop" className="btn-line">All prints</Link>
       </div>
     </article>
