@@ -5,6 +5,7 @@ import { siteUrl } from "@/config/site";
 import { pageHead } from "@/lib/seo";
 import * as concertOutfits from "@/content/blog/what-to-wear-to-a-concert-in-india";
 import * as biryaniComa from "@/content/blog/why-biryani-makes-you-sleepy";
+import * as dutyFree from "@/content/blog/what-can-you-bring-to-india-duty-free";
 import { formatDate } from "./index";
 
 type PostModule = { Body: ComponentType; faq: { q: string; a: string }[] };
@@ -12,6 +13,7 @@ type PostModule = { Body: ComponentType; faq: { q: string; a: string }[] };
 const CONTENT: Record<string, PostModule> = {
   "what-to-wear-to-a-concert-in-india": concertOutfits,
   "why-biryani-makes-you-sleepy": biryaniComa,
+  "what-can-you-bring-to-india-duty-free": dutyFree,
 };
 
 export const Route = createFileRoute("/blog/$slug")({

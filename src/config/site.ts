@@ -26,7 +26,7 @@ export const LAUNCH_ONE_SLUGS = [
 export const PRODUCT_SLUGS = [...CONCERT_DROP_SLUGS, ...GAMER_DROP_SLUGS, ...LAUNCH_ONE_SLUGS] as const;
 
 /** Journal posts, newest first. Each slug has its own file in src/routes/blog/. */
-export const BLOG_SLUGS = ["why-biryani-makes-you-sleepy", "what-to-wear-to-a-concert-in-india"] as const;
+export const BLOG_SLUGS = ["what-can-you-bring-to-india-duty-free", "why-biryani-makes-you-sleepy", "what-to-wear-to-a-concert-in-india"] as const;
 
 /** Every page a crawler should be told about. */
 export const PUBLIC_PATHS: string[] = [
